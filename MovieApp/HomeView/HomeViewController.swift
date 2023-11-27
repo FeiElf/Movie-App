@@ -38,7 +38,7 @@ class HomeViewController: UIViewController {
         setUpTableViewDetails()
         setUpView()
         genresApiCall()
-//        setUpTextFieldPublisher()
+        setUpTextFieldPublisher()
     }
     
     @objc func genresApiCall() {
@@ -106,21 +106,22 @@ class HomeViewController: UIViewController {
         case original
     }
     
-//    func setUpTextFieldPublisher() {
-//        generalTextField.textPublisher.sink { value in
-//            let searchResults = self.moviesData.filter { $0.title!.contains(value) }
-//            value.count < 1 ? self.update(type: .original, data: []) : self.update(type: .search, data: searchResults)
-//        }.store(in: &cancellables)
-//    }
-//    
-//    func update(type: DataType, data: [MovieViewModel]) {
-//        switch type {
-//        case .search:
-//            DispatchQueue.main.async { self.moviesData = data; self.tableView.reloadData() }
-//        case .original:
-//            DispatchQueue.main.async { self.moviesData = self.searchMovie; self.tableView.reloadData() }
-//        }
-//    }
+    func setUpTextFieldPublisher() {
+        generalTextField.textPublisher.sink { value in
+            debugPrint(value)
+            let searchResults = self.moviesData.filter { $0.title!.contains(value) }
+            value.count < 1 ? self.update(type: .original, data: []) : self.update(type: .search, data: searchResults)
+        }.store(in: &cancellables)
+    }
+    
+    func update(type: DataType, data: [MovieViewModel]) {
+        switch type {
+        case .search:
+            DispatchQueue.main.async { self.moviesData = data; self.tableView.reloadData() }
+        case .original:
+            DispatchQueue.main.async { self.moviesData = self.searchMovie; self.tableView.reloadData() }
+        }
+    }
     
     lazy var SearchWhiteBackground: UILabel = {
         let label = UILabel()
