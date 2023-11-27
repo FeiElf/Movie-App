@@ -38,6 +38,7 @@ class HomeViewController: UIViewController {
         setUpTableViewDetails()
         setUpView()
         genresApiCall()
+//        setUpTextFieldPublisher()
     }
     
     @objc func genresApiCall() {
@@ -105,23 +106,22 @@ class HomeViewController: UIViewController {
         case original
     }
     
-    func setUpTextFieldPublisher() {
-        generalTextField.textPublisher.sink { value in
-            let searchResults = self.moviesData.filter { $0.title!.contains(value) }
-            value.count < 1 ? self.update(type: .original, data: []) : self.update(type: .search, data: searchResults)
-        }.store(in: &cancellables)
-    }
+//    func setUpTextFieldPublisher() {
+//        generalTextField.textPublisher.sink { value in
+//            let searchResults = self.moviesData.filter { $0.title!.contains(value) }
+//            value.count < 1 ? self.update(type: .original, data: []) : self.update(type: .search, data: searchResults)
+//        }.store(in: &cancellables)
+//    }
+//    
+//    func update(type: DataType, data: [MovieViewModel]) {
+//        switch type {
+//        case .search:
+//            DispatchQueue.main.async { self.moviesData = data; self.tableView.reloadData() }
+//        case .original:
+//            DispatchQueue.main.async { self.moviesData = self.searchMovie; self.tableView.reloadData() }
+//        }
+//    }
     
-    func update(type: DataType, data: [MovieViewModel]) {
-        switch type {
-        case .search:
-            DispatchQueue.main.async { self.moviesData = data; self.tableView.reloadData() }
-        case .original:
-            DispatchQueue.main.async { self.moviesData = self.searchMovie; self.tableView.reloadData() }
-        }
-    }
-    
-    var cancellables = Set<AnyCancellable>()
     lazy var SearchWhiteBackground: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
@@ -135,20 +135,33 @@ class HomeViewController: UIViewController {
         return label
     }()
     
+    let searchImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = .white
+        imageView.image = UIImage(systemName: "magnifyingglass")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.zPosition = 2
+        return imageView
+    }()
+    
+    var cancellables = Set<AnyCancellable>()
     lazy var generalTextField: UITextField = {
-      let field = UITextField()
-      field.placeholder = "Search"
-      field.backgroundColor = .clear
-      field.autocapitalizationType = UITextAutocapitalizationType.none
-      field.translatesAutoresizingMaskIntoConstraints = false
-      field.layer.zPosition = 2
+        let field = UITextField()
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.placeholder = "Search"
+        field.backgroundColor = .clear
+        field.autocapitalizationType = UITextAutocapitalizationType.none
+        field.layer.zPosition = 3
 //      field.delegate = self
-      field.textColor = UIColor.green
-      field.font = UIFont(name: "Arial", size: 16)
-      field.textAlignment = NSTextAlignment.left
-      field.returnKeyType = .done
-      field.keyboardType = .numberPad
-      field.keyboardAppearance = .light
+        field.isUserInteractionEnabled = true
+        field.textColor = UIColor.green
+        field.font = UIFont(name: "Arial", size: 16)
+        field.textAlignment = NSTextAlignment.left
+        field.returnKeyType = .done
+        field.keyboardType = .numberPad
+        field.keyboardAppearance = .light
       return field
     }()
     
@@ -163,6 +176,18 @@ class HomeViewController: UIViewController {
         button.contentMode = .scaleAspectFit
         button.layer.zPosition = 2
         return button
+    }()
+    
+    lazy var titleText: UILabel = {
+        let title = UILabel()
+        title.text = "Popular Right now"
+        title.font = UIFont.systemFont(ofSize: 25, weight: UIFont.Weight.heavy)
+        title.translatesAutoresizingMaskIntoConstraints = false
+        title.textAlignment = .center
+        title.backgroundColor = UIColor.myGreen
+        title.textColor = UIColor.myDarkGreen
+        title.layer.zPosition = 1
+        return title
     }()
 
 }

@@ -24,7 +24,7 @@ class MovieListCell: UITableViewCell {
                 genres.forEach { genre in
                     let tv = TagCell()
                     tv.text = genre
-                    tv.layer.zPosition = 3
+                    tv.layer.zPosition = 2
                     a.append(tv)
                 }
                 tagsView.addArrangedViews(a)
@@ -85,7 +85,7 @@ class MovieListCell: UITableViewCell {
         tagsView.topAnchor.constraint(equalToSystemSpacingBelow: movieVote.bottomAnchor, multiplier: 5).isActive = true
         tagsView.leftAnchor.constraint(equalTo: moviePosterImage.rightAnchor, constant: 0).isActive = true
         tagsView.rightAnchor.constraint(equalTo: whiteBackgroundLabel.rightAnchor, constant: 0).isActive = true
-        tagsView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        tagsView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
     }
     
