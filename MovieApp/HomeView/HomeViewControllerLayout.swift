@@ -12,8 +12,7 @@ extension HomeViewController {
     func setUpTableViewDetails() {
         tableView.delegate      =   self
         tableView.dataSource    =   self
-//        tableView.register(FlightsListCell.self, forCellReuseIdentifier: FlightListCellID)
-//        tableView.register(FlightListLargeCell.self, forCellReuseIdentifier: FlightListLargeCellID)
+        tableView.register(MovieListCell.self, forCellReuseIdentifier: MovieListCellID)
     }
     
     func setUpView(){
@@ -28,5 +27,12 @@ extension HomeViewController {
         xForsearchImage.rightAnchor.constraint(equalTo: SearchWhiteBackground.rightAnchor, constant: -10).isActive = true
         xForsearchImage.widthAnchor.constraint(equalToConstant: 35).isActive = true
         xForsearchImage.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        
+        debugPrint("added table view")
+        view.addSubview(tableView)
+        tableView.topAnchor.constraint(equalTo: SearchWhiteBackground.bottomAnchor, constant: 0).isActive = true
+        tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
     }
 }

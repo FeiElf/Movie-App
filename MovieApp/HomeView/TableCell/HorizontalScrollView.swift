@@ -8,147 +8,172 @@
 import Foundation
 import UIKit
 
-//class TagsViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-//    
-//    private let cellId = "tag"
-//    
-//    var theTags: [String] = []{
-//        didSet {
-//            collectionView?.reloadData()
-//        }
-//    }
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        collectionView?.backgroundColor = .white
-//        collectionView?.register(MyTagsView.self, forCellWithReuseIdentifier: cellId)
-//    }
-//    
-//    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MyTagsView
-//        cell.theTags = theTags
-//        return cell
-//    }
-//    
-//    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 1
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSizeMake(view.frame.width, 20)
-//    }
-//}
+/// The horizontal scroll view subclasses the UIScrollView and adds your views using
+/// programmatic NSLayoutConstraints.
+/// - Important: Setting a height constraint on this view is highly recommended.
+/// It would also be recommended to set a width constraint on your added arrangedViews.
+class HorizontalScrollView: UIScrollView {
+    /// The views that have been added to this scroll view.
+    var arrangedViews: [UIView] = []
+    /// The constraints added as a result of the arrangedViews added.
+    private var arrangedViewContraints: [NSLayoutConstraint] = []
+    /// The spacing between views, defaults to 8.0.
+    var interItemSpacing: CGFloat = 8.0 { didSet { setNeedsUpdateConstraints() } }
+    /// The content inset around the arranged views within the scroll view.
+    var contentInsetValue: UIEdgeInsets = .init(top: 0, left: 10, bottom: 0, right: 0) {
+        didSet { contentInset = contentInsetValue }
+    }
 
-//class MyTagsView: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-//    private let tagCellId = "tag Cell"
-//    
-//    var theTags: [String] = []{
-//        didSet {
-//            collectionView.reloadData()
-//        }
-//    }
-//    
-////    let appCollectionView: UICollectionView = {
-////        let layout = UICollectionViewFlowLayout()
-////        layout.scrollDirection = .horizontal
-////        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-////        
-////        collectionView.translatesAutoresizingMaskIntoConstraints = false
-////        return collectionView
-////    }()
-//    
-//    override func viewDidLoad() {
-//        setUpView()
-//    }
-//    
-//    func setUpView() {
-////        addSubview(appCollectionView)
-////        
-////        appCollectionView.dataSource = self
-////        appCollectionView.delegate = self
-//        
-//        collectionView.translatesAutoresizingMaskIntoConstraints = false
-//        collectionView.register(TagCell.self, forCellWithReuseIdentifier: tagCellId)
-//        
-////        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0": appCollectionView]))
-////        
-////        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0": appCollectionView]))
-//    }
-//    
-//        override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tagCellId, for: indexPath) as! TagCell
-//            cell.text = theTags[indexPath.row]
-//            return cell
-//        }
-//    
-//        override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//            return theTags.count
-//        }
-//    
-//        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//            return CGSizeMake(view.frame.width, 40)
-//        }
-//    
-//    
-////    var theTags: [String] = [] {
-////        didSet {
-////            // clear existing (in case we're setting the tags multiple times)
-////            vStack.arrangedSubviews.forEach { v in
-////                v.removeFromSuperview()
-////            }
-////            tagViews = []
-////            var totalWidth: CGFloat = 0
-////            // create individual tag views and get the total width
-////            theTags.forEach { str in
-////                let t = MyTagView()
-////                t.text = str
-////                let sz = t.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-////                totalWidth += sz.width
-////                tagViews.append(t)
-////            }
-//// 
-////            let rowWidth: CGFloat = totalWidth / CGFloat(numRows)
-////            var iTag: Int = 0
-////            while iTag < tagViews.count {
-////                // create a new "row" horizontal stack view
-////                let v = UIStackView()
-////                v.spacing = 8
-////                vStack.addArrangedSubview(v)
-////                var cw: CGFloat = 0
-////                // add tag views
-////                while cw < rowWidth, iTag < tagViews.count {
-////                    let t = tagViews[iTag]
-////                    let sz = t.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-////                    v.addArrangedSubview(t)
-////                    cw += sz.width
-////                    iTag += 1
-////                }
-////            }
-////        }
-////    }
-//    
-//    
-//
-////    func commonInit() -> Void {
-////        let scrollView = UIScrollView()
-////        scrollView.translatesAutoresizingMaskIntoConstraints = false
-////        scrollView.addSubview(vStack)
-////        addSubview(scrollView)
-////        let g = self
-////        let cg = scrollView.contentLayoutGuide
-////        NSLayoutConstraint.activate([
-////            scrollView.topAnchor.constraint(equalTo: g.topAnchor, constant: 0.0),
-////            scrollView.leadingAnchor.constraint(equalTo: g.leadingAnchor, constant: 0.0),
-////            scrollView.trailingAnchor.constraint(equalTo: g.trailingAnchor, constant: 0.0),
-////            scrollView.bottomAnchor.constraint(equalTo: g.bottomAnchor, constant: 0.0),
-////            
-////            vStack.topAnchor.constraint(equalTo: cg.topAnchor, constant: 8.0),
-////            vStack.leadingAnchor.constraint(equalTo: cg.leadingAnchor, constant: 8.0),
-////            vStack.trailingAnchor.constraint(equalTo: cg.trailingAnchor, constant: -8.0),
-////            vStack.bottomAnchor.constraint(equalTo: cg.bottomAnchor, constant: -8.0),
-////            
-////            scrollView.heightAnchor.constraint(equalTo: vStack.heightAnchor, constant: 16.0),
-////        ])
-////    }
-//    
-//}
+    // MARK: - INITIALIZERS:
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        delaysContentTouches = false
+        contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+    }
+
+    @available(*, unavailable) required init?(coder: NSCoder) { nil }
+
+    // MARK: - OVERRIDES OF INHERITANCE:
+
+    override open func updateConstraints() {
+        super.updateConstraints()
+        removeConstraintsForArrangedViews()
+        addConstraintsForArrangedViews()
+    }
+
+    // MARK: - EXPOSED FUNCTIONS:
+
+    /// Add the views you want to the scrolling horizontal view.
+    /// The views are automatically added on the main queue.
+    /// - Parameter views: ([UIView]) The arrays of views you want to add.
+    func addArrangedViews(_ views: [UIView]) {
+        DispatchQueue.main.async {
+            views.forEach {
+                $0.translatesAutoresizingMaskIntoConstraints = false
+                self.arrangedViews.append($0)
+                self.addSubview($0)
+            }
+            self.setNeedsUpdateConstraints()
+        }
+    }
+
+    /// Removes the view at a specified index with a boolean returned in the completion handler.
+    /// The view is automatically removed on the main thread.
+    /// - Parameter index: (Int) The index of the view you would like to remove.
+    /// - Parameter completion: (optional)  Returns true if the view was removed, false if not found.
+    func removeView(index: Int, completion: ((Bool) -> Void)? = nil) {
+        guard let view = self.arrangedViews[safe: index] else {
+            completion?(false)
+            return
+        }
+        view.alpha = 1.0
+        UIView.animate(withDuration: 0.35, delay: 0, options: .curveEaseOut, animations: {
+            view.alpha = 0
+        }, completion: { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.arrangedViews.remove(at: index)
+                view.removeFromSuperview()
+                self?.updateConstraints()
+                completion?(true)
+            }
+        })
+    }
+
+    /// Removes all arranged views, with the option of leaving the first view.
+    /// Leaving the first view could be handy when your first view features a button
+    /// like "Add a photo" while the views following it are photos.
+    /// Arranged views are removed on the main thread.
+    /// - Parameter exceptFirstView: (Bool) Pass true to preserve the first view.
+    func removeAllArrangedViews(exceptFirstView: Bool = true) {
+        DispatchQueue.main.async {
+            guard let first = self.arrangedViews.first else { return }
+            self.arrangedViews = exceptFirstView ? [first] : []
+            for subview in self.subviews {
+                if exceptFirstView, subview == first { continue }
+                subview.removeFromSuperview()
+            }
+
+            self.updateConstraints()
+        }
+    }
+
+    /// Removes all the constraints for the arranged views.
+    private func removeConstraintsForArrangedViews() {
+        arrangedViewContraints.forEach { $0.isActive = false }
+        arrangedViewContraints.removeAll()
+    }
+
+    /// Adds all the constraints for the arranged views and updates the array of NSLayoutConstraints.
+    private func addConstraintsForArrangedViews() {
+        for (index, view) in arrangedViews.enumerated() {
+            switch index {
+            case 0:
+                arrangedViewContraints.append(leadingConstraint(forView: view))
+                arrangedViewContraints.append(topConstraint(forView: view))
+            case arrangedViews.count - 1:
+                arrangedViewContraints.append(trailingConstraint(forView: view))
+                arrangedViewContraints.append(topConstraint(forView: view))
+                fallthrough
+            default:
+                let previousView = arrangedViews[index - 1]
+                let constraint = leadingToTrailingConstraint(forView: view, toView: previousView)
+                arrangedViewContraints.append(constraint)
+            }
+        }
+    }
+
+    // MARK: - CONSTRAINT HELPERS:
+    // It would be wise to leave these helpers as you utilize this class
+    // across mutliple projects, instead of adding them as extensions.
+
+    /// Creates a leading constraint horizontally from one views leading edge to another views trailing edge.
+    /// - Parameter arrangedView: (UIView) The view that should have the leading constraint.
+    /// - Parameter toView: (UIView)  The view that should have the trailing constraint.
+    /// - Important: This function activates the constraint.
+    /// - Returns: (NSLayoutConstraint) The horizontal NSLayoutConstraint.
+    private func leadingToTrailingConstraint(forView arrangedView: UIView,
+                                             toView: UIView) -> NSLayoutConstraint {
+        let constraint = arrangedView.leadingAnchor
+            .constraint(equalTo: toView.trailingAnchor, constant: interItemSpacing)
+        constraint.isActive = true
+        return constraint
+    }
+
+    /// Creates a top constraint from the passed view's top edge to this class's top edge.
+    /// - Parameter arrangedView: (UIView) The view that should have the top constraint.
+    /// - Important: This function activates the constraint.
+    /// - Returns: (NSLayoutConstraint) The top NSLayoutConstraint.
+    private func topConstraint(forView arrangedView: UIView) -> NSLayoutConstraint {
+        let constraint = arrangedView.topAnchor.constraint(equalTo: self.topAnchor)
+        constraint.isActive = true
+        return constraint
+    }
+
+    /// Creates a leading constraint from the passed view's leading edge to this class's leading edge.
+    /// - Parameter arrangedView: (UIView) The view that should have the leading constraint.
+    /// - Important: This function activates the constraint.
+    /// - Returns: (NSLayoutConstraint) The leading NSLayoutConstraint.
+    private func leadingConstraint(forView arrangedView: UIView) -> NSLayoutConstraint {
+        let constraint = arrangedView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
+        constraint.isActive = true
+        return constraint
+    }
+
+    /// Creates a trailing constraint from the passed view's trailing edge to this class's trailing edge.
+    /// - Parameter arrangedView: (UIView) The view that should have the trailing constraint.
+    /// - Important: This function activates the constraint.
+    /// - Returns: (NSLayoutConstraint) The trailing NSLayoutConstraint.
+    private func trailingConstraint(forView arrangedView: UIView) -> NSLayoutConstraint {
+        let constraint = arrangedView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        constraint.isActive = true
+        return constraint
+    }
+}
+
+private extension Collection {
+    /// Returns the element at the specified index if it is within bounds, otherwise nil.
+    subscript (safe index: Index) -> Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
+}

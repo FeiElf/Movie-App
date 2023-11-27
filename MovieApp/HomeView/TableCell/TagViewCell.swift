@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class MyTagView: UIView {
+class TagCell: UIView {
     
     public var text: String = "" {
         didSet {
@@ -16,8 +16,8 @@ class MyTagView: UIView {
         }
     }
     
-    public var normalForegroundColor: UIColor = .darkGray
-    public var normalBackgroundColor: UIColor = .lightGray
+    public var normalForegroundColor: UIColor = UIColor.myGrayText1
+    public var normalBackgroundColor: UIColor = UIColor.mylightGray1
     
     private let theLabel: UILabel = {
         let v = UILabel()
@@ -37,19 +37,17 @@ class MyTagView: UIView {
         backgroundColor = normalBackgroundColor
         theLabel.textColor = normalForegroundColor
         theLabel.translatesAutoresizingMaskIntoConstraints = false
+        theLabel.font = UIFont(name: "Arial", size: 15)
         addSubview(theLabel)
         let g = self
         NSLayoutConstraint.activate([
-            theLabel.topAnchor.constraint(equalTo: g.topAnchor, constant: 4.0),
-            theLabel.leadingAnchor.constraint(equalTo: g.leadingAnchor, constant: 8.0),
-            theLabel.trailingAnchor.constraint(equalTo: g.trailingAnchor, constant: -8.0),
-            theLabel.bottomAnchor.constraint(equalTo: g.bottomAnchor, constant: -4.0),
-            theLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 40.0),
+            theLabel.topAnchor.constraint(equalTo: g.topAnchor, constant: 2),
+            theLabel.leadingAnchor.constraint(equalTo: g.leadingAnchor, constant: 8),
+            theLabel.trailingAnchor.constraint(equalTo: g.trailingAnchor, constant: -8),
+            theLabel.bottomAnchor.constraint(equalTo: g.bottomAnchor, constant: -2),
         ])
-        layer.cornerRadius = 8
-        layer.borderWidth = 1
-        layer.borderColor = normalForegroundColor.cgColor
-        
+        layer.cornerRadius = 10
+        layer.masksToBounds = true
     }
 
 }

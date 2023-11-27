@@ -16,7 +16,7 @@ extension UIColor {
 }
 extension UIColor {
     static let myRed = UIColor(r: 212, g: 1, b: 25)               // #d40119
-    static let myGray1 = UIColor(r: 114, g: 114, b: 114)          // #727272
+    static let mylightGray1 = UIColor(r: 217, g: 222, b: 217)          // #d9ded9
     static let myBorder = UIColor(r: 224, g: 224, b: 224)         // #e0e0e0
     static let myGrayText1 = UIColor(r: 185, g: 188, b: 185)      // #b9bcb9
     static let myBlue = UIColor(r: 0, g: 72, b: 183)              // #0048b7

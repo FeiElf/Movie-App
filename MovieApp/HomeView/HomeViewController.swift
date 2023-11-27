@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     var tableView = tableCustom()
     var mainCor: MainCoordinator
     
+    let MovieListCellID = "MovieListCellID"
     var moviesData = [MovieViewModel]()
     var searchMovie = [MovieViewModel]()
     var genres = [Genre]()
@@ -34,6 +35,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = UIColor.myBackgroundColor
+        setUpTableViewDetails()
         setUpView()
         genresApiCall()
     }
@@ -64,7 +66,7 @@ class HomeViewController: UIViewController {
             case .finished: print("finished")
                 }
             }, receiveValue: { (data: JSONStructure) in
-                self.refactorData(data: data.results)
+               self.refactorData(data: data.results)
             })
     }
     
@@ -74,18 +76,21 @@ class HomeViewController: UIViewController {
     
     func refactorData(data: [Movie]) {
         debugPrint("refactor data")
-        clean.refactorAndInsertIntoViewModel(data: data, genres: genres).sink { [weak self] completion in
-            switch completion {
-            case .failure(.message(_)): self?.callFailureAlert()
-            case .finished:  print("finished")
-            }
-        } receiveValue: { (data) in
+        Task {
+            await clean.refactorAndInsertIntoViewModel(data: data, genres: genres).sink { [weak self] completion in
+                switch completion {
+                case .failure(.message(_)): self?.callFailureAlert()
+                case .finished:  print("finished")
+                }
+            } receiveValue: { (data) in
+//                            debugPrint(data)
                 self.moviesData = data;
                 self.searchMovie = self.moviesData
                 DispatchQueue.main.async {
                     self.tableView.reloadData();
                     self.tableView.tableFooterView = UIView()
                 }
+            }
         }
     }
     

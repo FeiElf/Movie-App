@@ -33,27 +33,35 @@ class DataManagerGenerics {
            .eraseToAnyPublisher()
        }
     
-    func downloadImageUrl(_ urlString: String, completion: ((_ _image: Data?) -> ())?) {
+    func downloadImageUrl(_ urlString: String) async -> Data? {
+//        let imageBaseUrl: String = "https://image.tmdb.org/t/p/w500"
         guard let url = URL(string: urlString) else {
-            completion?(nil)
-            return
+//            completion?(nil)
+            return nil
         }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let error = error {
-                print("error in downloading image: \(error)")
-                completion?(nil)
-                return
-            }
-            guard let httpResponse = response as? HTTPURLResponse,(200...299).contains(httpResponse.statusCode) else {
-                completion?(nil)
-                return
-            }
-            if let data = data {
-                completion?(data)
-                return
-            }
-            completion?(nil)
-        }.resume()
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            return data
+        }catch {
+            return nil
+        }
+        
+//        { (data, response, error) in
+//            if let error = error {
+//                print("error in downloading image: \(error)")
+//                completion?(nil)
+//                return
+//            }
+//            guard let httpResponse = response as? HTTPURLResponse,(200...299).contains(httpResponse.statusCode) else {
+//                completion?(nil)
+//                return
+//            }
+//            if let data = data {
+//                completion?(data)
+//                return
+//            }
+//            completion?(nil)
+//        }.resume()
     }
     
 //    func apiCallFavoriteMovie(url: String, completion: @escaping (Result<[Movie], MovieError>) -> ()) {

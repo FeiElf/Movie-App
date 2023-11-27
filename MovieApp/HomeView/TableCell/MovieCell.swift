@@ -10,6 +10,7 @@ import UIKit
 
 class MovieListCell: UITableViewCell {
     var movieListTable: HomeViewController?
+    
     var data: MovieViewModel! {
         didSet {
             if let posterImage = data.poster_image {
@@ -18,12 +19,23 @@ class MovieListCell: UITableViewCell {
             movieTitle.text = data.title
             movieYear.text = data.release_year
             movieVote.text = "\(data.vote_average)%"
+            if let genres = data.genres {
+                var a: [TagCell] = []
+                genres.forEach { genre in
+                    let tv = TagCell()
+                    tv.text = genre
+                    tv.layer.zPosition = 3
+                    a.append(tv)
+                }
+                tagsView.addArrangedViews(a)
+            }
         }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
@@ -34,6 +46,7 @@ class MovieListCell: UITableViewCell {
         addSubview(movieYear)
         addSubview(movieVote)
         addSubview(scoreText)
+        addSubview(tagsView)
     }
     
     override func layoutSubviews() {
@@ -68,6 +81,11 @@ class MovieListCell: UITableViewCell {
         scoreText.leftAnchor.constraint(equalTo: movieVote.rightAnchor, constant: 10).isActive = true
         scoreText.rightAnchor.constraint(equalTo: whiteBackgroundLabel.rightAnchor, constant: 10).isActive = true
         scoreText.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
+        tagsView.topAnchor.constraint(equalToSystemSpacingBelow: movieVote.bottomAnchor, multiplier: 5).isActive = true
+        tagsView.leftAnchor.constraint(equalTo: moviePosterImage.rightAnchor, constant: 0).isActive = true
+        tagsView.rightAnchor.constraint(equalTo: whiteBackgroundLabel.rightAnchor, constant: 0).isActive = true
+        tagsView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
     }
     
@@ -111,7 +129,7 @@ class MovieListCell: UITableViewCell {
         label.textAlignment = .left
         label.layer.zPosition = 2
         label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.light)
-        label.textColor = UIColor.myGray1
+        label.textColor = UIColor.myGrayText1
         label.backgroundColor = UIColor.clear
         label.clipsToBounds = true
         label.sizeToFit()
@@ -143,6 +161,17 @@ class MovieListCell: UITableViewCell {
         label.sizeToFit()
         label.text = " user score"
         return label
+    }()
+    
+    let tagsView: HorizontalScrollView = {
+        let tv = HorizontalScrollView(frame: .zero)
+        tv.backgroundColor = .white
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.isUserInteractionEnabled = true
+        tv.interItemSpacing = 10
+        tv.showsHorizontalScrollIndicator = false
+        tv.layer.zPosition = 2
+        return tv
     }()
     
 }
