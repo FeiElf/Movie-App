@@ -35,6 +35,11 @@
 		246EE05E2B15694D00CA51CC /* DetailViewControllerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246EE05D2B15694D00CA51CC /* DetailViewControllerLayout.swift */; };
 		246EE0612B15B94200CA51CC /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246EE0602B15B94200CA51CC /* FavouriteViewController.swift */; };
 		246EE0632B15B95200CA51CC /* FavouriteViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246EE0622B15B95200CA51CC /* FavouriteViewLayout.swift */; };
+		246EE0652B15D46C00CA51CC /* RateModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246EE0642B15D46C00CA51CC /* RateModalViewController.swift */; };
+		246EE0672B15D4FA00CA51CC /* InteractiveModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246EE0662B15D4FA00CA51CC /* InteractiveModalPresentationController.swift */; };
+		246EE0692B16046000CA51CC /* RatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246EE0682B16046000CA51CC /* RatedViewController.swift */; };
+		246EE06B2B16441300CA51CC /* FavouriteViewCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246EE06A2B16441300CA51CC /* FavouriteViewCollectionView.swift */; };
+		246EE06D2B16492D00CA51CC /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246EE06C2B16492D00CA51CC /* CollectionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +92,11 @@
 		246EE05D2B15694D00CA51CC /* DetailViewControllerLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewControllerLayout.swift; sourceTree = "<group>"; };
 		246EE0602B15B94200CA51CC /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
 		246EE0622B15B95200CA51CC /* FavouriteViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewLayout.swift; sourceTree = "<group>"; };
+		246EE0642B15D46C00CA51CC /* RateModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateModalViewController.swift; sourceTree = "<group>"; };
+		246EE0662B15D4FA00CA51CC /* InteractiveModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveModalPresentationController.swift; sourceTree = "<group>"; };
+		246EE0682B16046000CA51CC /* RatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatedViewController.swift; sourceTree = "<group>"; };
+		246EE06A2B16441300CA51CC /* FavouriteViewCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewCollectionView.swift; sourceTree = "<group>"; };
+		246EE06C2B16492D00CA51CC /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +229,9 @@
 			children = (
 				246EE05B2B1561DD00CA51CC /* DetailViewController.swift */,
 				246EE05D2B15694D00CA51CC /* DetailViewControllerLayout.swift */,
+				246EE0642B15D46C00CA51CC /* RateModalViewController.swift */,
+				246EE0662B15D4FA00CA51CC /* InteractiveModalPresentationController.swift */,
+				246EE0682B16046000CA51CC /* RatedViewController.swift */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -228,6 +241,8 @@
 			children = (
 				246EE0602B15B94200CA51CC /* FavouriteViewController.swift */,
 				246EE0622B15B95200CA51CC /* FavouriteViewLayout.swift */,
+				246EE06A2B16441300CA51CC /* FavouriteViewCollectionView.swift */,
+				246EE06C2B16492D00CA51CC /* CollectionCell.swift */,
 			);
 			path = FavouriteView;
 			sourceTree = "<group>";
@@ -365,19 +380,24 @@
 			files = (
 				246EE0572B140D7500CA51CC /* TagViewCell.swift in Sources */,
 				246EE04D2B0ECEB700CA51CC /* MovieCell.swift in Sources */,
+				246EE06D2B16492D00CA51CC /* CollectionCell.swift in Sources */,
 				246EE0402B0DC6E700CA51CC /* UniversalUnits.swift in Sources */,
 				246EE04B2B0DD32C00CA51CC /* DataManager.swift in Sources */,
+				246EE0652B15D46C00CA51CC /* RateModalViewController.swift in Sources */,
 				246EE0612B15B94200CA51CC /* FavouriteViewController.swift in Sources */,
 				246EE00B2B0DBED200CA51CC /* HomeViewController.swift in Sources */,
 				246EE0442B0DC98C00CA51CC /* HomeViewControllerTableView.swift in Sources */,
+				246EE0672B15D4FA00CA51CC /* InteractiveModalPresentationController.swift in Sources */,
 				246EE05E2B15694D00CA51CC /* DetailViewControllerLayout.swift in Sources */,
 				246EE0632B15B95200CA51CC /* FavouriteViewLayout.swift in Sources */,
 				246EE0502B0F1FCE00CA51CC /* MovieViewModel.swift in Sources */,
 				246EE0072B0DBED200CA51CC /* AppDelegate.swift in Sources */,
 				246EE0542B1033A600CA51CC /* Genre.swift in Sources */,
 				246EE0522B0F6AC100CA51CC /* CleanData.swift in Sources */,
+				246EE06B2B16441300CA51CC /* FavouriteViewCollectionView.swift in Sources */,
 				246EE05C2B1561DE00CA51CC /* DetailViewController.swift in Sources */,
 				246EE0422B0DC71700CA51CC /* Extensions.swift in Sources */,
+				246EE0692B16046000CA51CC /* RatedViewController.swift in Sources */,
 				246EE03C2B0DC5AD00CA51CC /* Coordinator.swift in Sources */,
 				246EE0382B0DC42D00CA51CC /* Preview.swift in Sources */,
 				246EE0462B0DCA5000CA51CC /* HomeViewControllerLayout.swift in Sources */,

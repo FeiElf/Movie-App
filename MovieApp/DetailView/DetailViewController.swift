@@ -66,10 +66,18 @@ class DetailViewController: UIViewController {
         movieVote.text = "\(movieData!.vote_average)%"
         scoreSlider.progress = Float(movieData!.vote_average)/100
         overviewText.text = movieData!.overview
+        
         viewFavsButton.addTarget(self, action: #selector(onFavButtonClicked), for: .touchUpInside)
+        
         rateButtonYellow.addTarget(self, action: #selector(rateThisMovie), for: .touchUpInside)
         rateButtonBlack.addTarget(self, action: #selector(rateThisMovie), for: .touchUpInside)
+        
         starButton.addTarget(self, action: #selector(addMovieToFavourite), for: .touchUpInside)
+        if(moviesDataCopy[movieDataId].isFavourite){
+            starButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        }else {
+            starButton.setImage(UIImage(systemName: "star"), for: .normal)
+        }
         
         rateButtonYellow.layer.cornerRadius = 10
         rateButtonYellow.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
@@ -215,8 +223,17 @@ class DetailViewController: UIViewController {
         return slider
     }()
     
+    private var detailsTransitioningDelegate: InteractiveModalTransitioningDelegate!
+    
     @objc func rateThisMovie(sender: UIButton!) {
         debugPrint("rate this movie")
+        let controller = RateModalViewController(coordinator: mainCor, movieDataId: movieDataId)
+        detailsTransitioningDelegate = InteractiveModalTransitioningDelegate(from: self, to: controller)
+        controller.modalPresentationStyle = .custom
+        controller.transitioningDelegate = detailsTransitioningDelegate
+//        rateButtonYellow.setTitle("Rating Now...", for: .normal)
+//        rateButtonBlack.setTitle("using modal", for: .normal)
+        present(controller, animated: true, completion: nil)
     }
     
     lazy var rateButtonYellow: UIButton = {

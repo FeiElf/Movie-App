@@ -25,6 +25,7 @@ extension UIColor {
     static let myTransBlack = UIColor(r: 0, g: 0, b: 0, a: 0.3)
     static let myLightYellow = UIColor(r: 240, g: 222, b: 165, a: 1)
     static let myDarkYellow = UIColor(r: 173, g: 138, b: 23, a: 1)
+    static let myPink = UIColor(r: 242, g: 136, b: 148, a: 1)    //#f28894
 }
 
 extension UIView {

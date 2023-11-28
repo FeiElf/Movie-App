@@ -34,6 +34,17 @@ class MainCoordinator: Coordinator {
         let vc = HomeViewController(coordinator: self)
         navigationController.viewControllers = [vc]
     }
+    
+    func navigateBack() {
+        print("Back")
+        navigationController.popViewController(animated: true)
+    }
+    
+    func goToRatedPage(movieDataId: Int) {
+        print("goToRatedPage")
+        let vc = RatedViewController(coordinator: self, movieDataId: movieDataId)
+        navigationController.pushViewController(vc, animated: true)
+    }
    
     func goToFavoritePage() {
         print("goToThirdPage")
