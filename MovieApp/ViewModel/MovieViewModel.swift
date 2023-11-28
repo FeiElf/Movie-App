@@ -16,4 +16,5 @@ struct MovieViewModel: Codable {
     var vote_average: Int
     var backdrop_image: Data?
     var genres: [String]?
+    var isFavourite: Bool = false
 }

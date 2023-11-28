@@ -31,6 +31,10 @@
 		246EE0542B1033A600CA51CC /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246EE0532B1033A500CA51CC /* Genre.swift */; };
 		246EE0572B140D7500CA51CC /* TagViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246EE0562B140D7500CA51CC /* TagViewCell.swift */; };
 		246EE0592B140E7E00CA51CC /* HorizontalScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246EE0582B140E7E00CA51CC /* HorizontalScrollView.swift */; };
+		246EE05C2B1561DE00CA51CC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246EE05B2B1561DD00CA51CC /* DetailViewController.swift */; };
+		246EE05E2B15694D00CA51CC /* DetailViewControllerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246EE05D2B15694D00CA51CC /* DetailViewControllerLayout.swift */; };
+		246EE0612B15B94200CA51CC /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246EE0602B15B94200CA51CC /* FavouriteViewController.swift */; };
+		246EE0632B15B95200CA51CC /* FavouriteViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246EE0622B15B95200CA51CC /* FavouriteViewLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +83,10 @@
 		246EE0532B1033A500CA51CC /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		246EE0562B140D7500CA51CC /* TagViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewCell.swift; sourceTree = "<group>"; };
 		246EE0582B140E7E00CA51CC /* HorizontalScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalScrollView.swift; sourceTree = "<group>"; };
+		246EE05B2B1561DD00CA51CC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		246EE05D2B15694D00CA51CC /* DetailViewControllerLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewControllerLayout.swift; sourceTree = "<group>"; };
+		246EE0602B15B94200CA51CC /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
+		246EE0622B15B95200CA51CC /* FavouriteViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +137,8 @@
 		246EE0052B0DBED200CA51CC /* MovieApp */ = {
 			isa = PBXGroup;
 			children = (
+				246EE05F2B15B92400CA51CC /* FavouriteView */,
+				246EE05A2B1561C300CA51CC /* DetailView */,
 				246EE04E2B0F1FA700CA51CC /* ViewModel */,
 				246EE0472B0DCDFC00CA51CC /* Model */,
 				246EE0362B0DC34B00CA51CC /* HomeView */,
@@ -202,6 +212,24 @@
 				246EE0582B140E7E00CA51CC /* HorizontalScrollView.swift */,
 			);
 			path = TableCell;
+			sourceTree = "<group>";
+		};
+		246EE05A2B1561C300CA51CC /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				246EE05B2B1561DD00CA51CC /* DetailViewController.swift */,
+				246EE05D2B15694D00CA51CC /* DetailViewControllerLayout.swift */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
+		246EE05F2B15B92400CA51CC /* FavouriteView */ = {
+			isa = PBXGroup;
+			children = (
+				246EE0602B15B94200CA51CC /* FavouriteViewController.swift */,
+				246EE0622B15B95200CA51CC /* FavouriteViewLayout.swift */,
+			);
+			path = FavouriteView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,12 +367,16 @@
 				246EE04D2B0ECEB700CA51CC /* MovieCell.swift in Sources */,
 				246EE0402B0DC6E700CA51CC /* UniversalUnits.swift in Sources */,
 				246EE04B2B0DD32C00CA51CC /* DataManager.swift in Sources */,
+				246EE0612B15B94200CA51CC /* FavouriteViewController.swift in Sources */,
 				246EE00B2B0DBED200CA51CC /* HomeViewController.swift in Sources */,
 				246EE0442B0DC98C00CA51CC /* HomeViewControllerTableView.swift in Sources */,
+				246EE05E2B15694D00CA51CC /* DetailViewControllerLayout.swift in Sources */,
+				246EE0632B15B95200CA51CC /* FavouriteViewLayout.swift in Sources */,
 				246EE0502B0F1FCE00CA51CC /* MovieViewModel.swift in Sources */,
 				246EE0072B0DBED200CA51CC /* AppDelegate.swift in Sources */,
 				246EE0542B1033A600CA51CC /* Genre.swift in Sources */,
 				246EE0522B0F6AC100CA51CC /* CleanData.swift in Sources */,
+				246EE05C2B1561DE00CA51CC /* DetailViewController.swift in Sources */,
 				246EE0422B0DC71700CA51CC /* Extensions.swift in Sources */,
 				246EE03C2B0DC5AD00CA51CC /* Coordinator.swift in Sources */,
 				246EE0382B0DC42D00CA51CC /* Preview.swift in Sources */,

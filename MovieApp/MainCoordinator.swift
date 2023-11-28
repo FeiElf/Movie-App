@@ -10,7 +10,6 @@ import UIKit
 
 
 class MainCoordinator: Coordinator {
-//    var navigationController: UINavigationController?
 
     var navigationController = UINavigationController()
     
@@ -23,34 +22,23 @@ class MainCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: true)
     }
   
-    func goToSecondPage() {
+    func goToDetailPage(movieDataId: Int) {
         print("goToSecondPage")
-//        let vc = ViewController2()
-//        vc.mainCor = self
-//        navigationController.pushViewController(vc, animated: true)
-//        let vc = ViewController2(coordinator: self)
-//        navigationController.pushViewController(vc, animated: true)
+        let vc = DetailViewController(coordinator: self, movieDataId: movieDataId)
+        navigationController.pushViewController(vc, animated: true)
     }
    
   
-    func goToFirstPage() {
+    func goToHomePage() {
         print("goToFirstPage")
-//        let vc = HomeViewController(coordinator: self)
-////        navigationController.pushViewController(vc, animated: true)
-//        navigationController.viewControllers = [vc]
+        let vc = HomeViewController(coordinator: self)
+        navigationController.viewControllers = [vc]
     }
    
-    func goToThirdPage() {
+    func goToFavoritePage() {
         print("goToThirdPage")
-//        let vc = ViewController3(coordinator: self)
-//        navigationController.pushViewController(vc, animated: true)
+        let vc = FavouriteViewController(coordinator: self)
+        navigationController.pushViewController(vc, animated: true)
     }
-    
-//
-//    func goToFourthPage() {
-//        print("goToFourthPage")
-//        let vc = ViewController4(coordinator: self, color: UIColor.yellow)
-//        navigationController.pushViewController(vc, animated: true)
-//    }
      
 }

@@ -15,7 +15,7 @@ class CleanData {
         
         for movie in data {
             
-            let imageBaseUrl: String = "https://image.tmdb.org/t/p/w500"
+            let imageBaseUrl: String = "https://image.tmdb.org/t/p/"
             
             // movie_id
             let id: Int? = movie.id
@@ -27,7 +27,7 @@ class CleanData {
             let overview: String? = movie.overview
             
             // poster path
-            var poster_image: Data? = await DataManagerGenerics().downloadImageUrl("\(imageBaseUrl)\(movie.poster_path)")
+            let poster_image: Data? = await DataManagerGenerics().downloadImageUrl("\(imageBaseUrl)w342\(movie.poster_path)")
  
             // release year
             let result: [String]? = movie.release_date.components(separatedBy: "-")
@@ -37,7 +37,7 @@ class CleanData {
             let vote_average: Int = Int(movie.vote_average! * 10)
                         
             // backdrop path
-            var backdrop_image: Data? = await DataManagerGenerics().downloadImageUrl("\(imageBaseUrl)\(movie.poster_path)")
+            let backdrop_image: Data? = await DataManagerGenerics().downloadImageUrl("\(imageBaseUrl)w780\(movie.backdrop_path ?? movie.poster_path)")
             
             // genres
             let genres_list: [String]? = movie.genre_ids.map{

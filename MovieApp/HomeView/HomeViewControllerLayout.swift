@@ -18,7 +18,7 @@ extension HomeViewController {
     func setUpView(){
         view.backgroundColor = UIColor.myGreen
         view.addSubview(SearchWhiteBackground)
-        SearchWhiteBackground.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        SearchWhiteBackground.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
         SearchWhiteBackground.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
         SearchWhiteBackground.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
         SearchWhiteBackground.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -36,13 +36,12 @@ extension HomeViewController {
         xForsearchImage.heightAnchor.constraint(equalToConstant: 35).isActive = true
         
         view.addSubview(generalTextField)
-        generalTextField.centerYAnchor.constraint(equalTo: self.SearchWhiteBackground.centerYAnchor, constant: 3).isActive = true
-        generalTextField.leftAnchor.constraint(equalTo: self.searchImage.rightAnchor, constant: 20).isActive = true
-        generalTextField.rightAnchor.constraint(equalTo: self.xForsearchImage.leftAnchor, constant: -10).isActive = true
-        generalTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        self.generalTextField.centerYAnchor.constraint(equalTo: SearchWhiteBackground.centerYAnchor, constant: 3).isActive = true
+        self.generalTextField.leftAnchor.constraint(equalTo: self.searchImage.rightAnchor, constant: 20).isActive = true
+        self.generalTextField.rightAnchor.constraint(equalTo: xForsearchImage.leftAnchor, constant: -10).isActive = true
+        self.generalTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         view.addSubview(titleText)
-//        titleText.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 3).isActive = true
         titleText.topAnchor.constraint(equalTo: SearchWhiteBackground.bottomAnchor, constant: 0).isActive = true
         titleText.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
         titleText.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true

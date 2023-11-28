@@ -29,7 +29,7 @@ class HorizontalScrollView: UIScrollView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         delaysContentTouches = false
-        contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 
     @available(*, unavailable) required init?(coder: NSCoder) { nil }

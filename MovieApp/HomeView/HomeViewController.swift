@@ -10,6 +10,8 @@ import SwiftUI
 import Combine
 import Foundation
 
+var moviesDataCopy = [MovieViewModel]()
+
 class HomeViewController: UIViewController {
     
     private var usersSubscriper: AnyCancellable?
@@ -18,7 +20,6 @@ class HomeViewController: UIViewController {
     
     let MovieListCellID = "MovieListCellID"
     var moviesData = [MovieViewModel]()
-    var searchMovie = [MovieViewModel]()
     var genres = [Genre]()
     
     let clean = CleanData()
@@ -34,11 +35,13 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        debugPrint("didload home")
+        self.navigationController?.isNavigationBarHidden = true
         view.backgroundColor = UIColor.myBackgroundColor
         setUpTableViewDetails()
         setUpView()
-        genresApiCall()
         setUpTextFieldPublisher()
+        genresApiCall()
     }
     
     @objc func genresApiCall() {
@@ -86,7 +89,7 @@ class HomeViewController: UIViewController {
             } receiveValue: { (data) in
 //                            debugPrint(data)
                 self.moviesData = data;
-                self.searchMovie = self.moviesData
+                moviesDataCopy = self.moviesData
                 DispatchQueue.main.async {
                     self.tableView.reloadData();
                     self.tableView.tableFooterView = UIView()
@@ -99,7 +102,11 @@ class HomeViewController: UIViewController {
         Alert.show(title: "There was an issue", message: "Please try later", vc: self)
     }
     
-    @objc func clearText() {}
+    @objc func clearText() {
+        debugPrint("clear button clicked")
+        generalTextField.text = nil
+        update(type: .original, data: [])
+    }
     
     enum DataType  {
         case search
@@ -109,7 +116,7 @@ class HomeViewController: UIViewController {
     func setUpTextFieldPublisher() {
         generalTextField.textPublisher.sink { value in
             debugPrint(value)
-            let searchResults = self.moviesData.filter { $0.title!.contains(value) }
+            let searchResults = moviesDataCopy.filter { $0.title!.lowercased().contains(value.lowercased()) }
             value.count < 1 ? self.update(type: .original, data: []) : self.update(type: .search, data: searchResults)
         }.store(in: &cancellables)
     }
@@ -117,9 +124,11 @@ class HomeViewController: UIViewController {
     func update(type: DataType, data: [MovieViewModel]) {
         switch type {
         case .search:
+            titleText.text = "Your Results"
             DispatchQueue.main.async { self.moviesData = data; self.tableView.reloadData() }
         case .original:
-            DispatchQueue.main.async { self.moviesData = self.searchMovie; self.tableView.reloadData() }
+            titleText.text = "Popular Right now"
+            DispatchQueue.main.async { self.moviesData = moviesDataCopy; self.tableView.reloadData() }
         }
     }
     
@@ -161,7 +170,7 @@ class HomeViewController: UIViewController {
         field.font = UIFont(name: "Arial", size: 16)
         field.textAlignment = NSTextAlignment.left
         field.returnKeyType = .done
-        field.keyboardType = .numberPad
+        field.keyboardType = .alphabet
         field.keyboardAppearance = .light
       return field
     }()
@@ -187,7 +196,7 @@ class HomeViewController: UIViewController {
         title.textAlignment = .center
         title.backgroundColor = UIColor.myGreen
         title.textColor = UIColor.myDarkGreen
-        title.layer.zPosition = 1
+        title.layer.zPosition = 2
         return title
     }()
 

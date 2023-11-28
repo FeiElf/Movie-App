@@ -10,20 +10,41 @@ import UIKit
 import Combine
 
 extension UIColor {
-    convenience init(r: CGFloat, g: CGFloat, b: CGFloat) {
-        self.init(red: r/255, green: g/255, blue: b/255, alpha: 1)
+    convenience init(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
+        self.init(red: r/255, green: g/255, blue: b/255, alpha: a/1)
     }
 }
 extension UIColor {
-    static let myRed = UIColor(r: 212, g: 1, b: 25)               // #d40119
-    static let mylightGray1 = UIColor(r: 217, g: 222, b: 217)          // #d9ded9
-    static let myBorder = UIColor(r: 224, g: 224, b: 224)         // #e0e0e0
-    static let myGrayText1 = UIColor(r: 185, g: 188, b: 185)      // #b9bcb9
-    static let myGreen = UIColor(r: 52, g: 235, b: 155)              // #0048b7
-    static let myDarkGreen = UIColor(r: 30, g: 82, b: 51)          //#1e5233
-    static let myBlue = UIColor(r: 0, g: 72, b: 183)
-    static let myGrayText2 = UIColor(r: 118, g: 118, b: 118)      // #767676
-    static let myBackgroundColor = UIColor(r: 250, g: 250, b: 250)// #fafafa
+    static let mylightGray1 = UIColor(r: 217, g: 222, b: 217, a: 1)          // #d9ded9
+    static let myGrayText1 = UIColor(r: 185, g: 188, b: 185, a: 1)      // #b9bcb9
+    static let myGreen = UIColor(r: 52, g: 235, b: 155, a: 1)              // #0048b7
+    static let myDarkGreen = UIColor(r: 30, g: 82, b: 51, a: 1)          //#1e5233
+    static let myBlue = UIColor(r: 0, g: 72, b: 183, a: 1)
+    static let myBackgroundColor = UIColor(r: 250, g: 250, b: 250, a: 1)// #fafafa
+    static let myTransWhite = UIColor(r: 250, g: 250, b: 250, a: 0.5)
+    static let myTransBlack = UIColor(r: 0, g: 0, b: 0, a: 0.3)
+    static let myLightYellow = UIColor(r: 240, g: 222, b: 165, a: 1)
+    static let myDarkYellow = UIColor(r: 173, g: 138, b: 23, a: 1)
+}
+
+extension UIView {
+    func addoverlay(color: UIColor = .black,alpha : CGFloat = 0.6) {
+        let overlay = UIView()
+        overlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        overlay.frame = bounds
+        overlay.backgroundColor = color
+        overlay.alpha = alpha
+        addSubview(overlay)
+    }
+    //This function will add a layer on any `UIView` to make that `UIView` look darkened
+    func roundCorners(corners: UIRectCorner, radius: CGFloat) {
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        self.layer.mask = mask
+     }
+    
+    
 }
 
 

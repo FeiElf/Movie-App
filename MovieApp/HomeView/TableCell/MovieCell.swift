@@ -52,7 +52,7 @@ class MovieListCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        whiteBackgroundLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
+        whiteBackgroundLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         whiteBackgroundLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
         whiteBackgroundLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
         whiteBackgroundLabel.heightAnchor.constraint(equalToConstant: 145).isActive = true
@@ -70,7 +70,7 @@ class MovieListCell: UITableViewCell {
         movieYear.topAnchor.constraint(equalTo: movieTitle.bottomAnchor, constant: 5).isActive = true
         movieYear.leftAnchor.constraint(equalTo: moviePosterImage.rightAnchor, constant: 10).isActive = true
         movieYear.rightAnchor.constraint(equalTo: whiteBackgroundLabel.rightAnchor, constant: 10).isActive = true
-        movieTitle.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        movieYear.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         movieVote.topAnchor.constraint(equalTo: movieYear.bottomAnchor, constant: 5).isActive = true
         movieVote.leftAnchor.constraint(equalTo: moviePosterImage.rightAnchor, constant: 10).isActive = true
@@ -82,8 +82,8 @@ class MovieListCell: UITableViewCell {
         scoreText.rightAnchor.constraint(equalTo: whiteBackgroundLabel.rightAnchor, constant: 10).isActive = true
         scoreText.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
-        tagsView.topAnchor.constraint(equalToSystemSpacingBelow: movieVote.bottomAnchor, multiplier: 5).isActive = true
-        tagsView.leftAnchor.constraint(equalTo: moviePosterImage.rightAnchor, constant: 0).isActive = true
+        tagsView.topAnchor.constraint(equalTo: movieVote.bottomAnchor, constant: 5).isActive = true
+        tagsView.leftAnchor.constraint(equalTo: moviePosterImage.rightAnchor, constant: 10).isActive = true
         tagsView.rightAnchor.constraint(equalTo: whiteBackgroundLabel.rightAnchor, constant: 0).isActive = true
         tagsView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         

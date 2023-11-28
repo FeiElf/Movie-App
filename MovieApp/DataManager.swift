@@ -34,9 +34,7 @@ class DataManagerGenerics {
        }
     
     func downloadImageUrl(_ urlString: String) async -> Data? {
-//        let imageBaseUrl: String = "https://image.tmdb.org/t/p/w500"
         guard let url = URL(string: urlString) else {
-//            completion?(nil)
             return nil
         }
         do {

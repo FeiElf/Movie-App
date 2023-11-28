@@ -10,7 +10,7 @@ import UIKit
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var info = moviesData[indexPath.row]
+        let info = moviesData[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieListCellID, for: indexPath) as! MovieListCell
         cell.movieListTable = self
         cell.data = info
@@ -20,7 +20,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.mainCor.goToSecondPage()
+        self.mainCor.goToDetailPage(movieDataId: indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -28,6 +28,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180
+        return 160
     }
 }
