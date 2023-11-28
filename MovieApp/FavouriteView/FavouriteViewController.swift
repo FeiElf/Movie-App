@@ -18,9 +18,11 @@ class FavouriteViewController: UIViewController {
             if favouriteMovies.isEmpty {
                 topBarBackground.backgroundColor = .myPink
                 favouriteTitle.textColor = .myPink
+                searchForFavButton.setTitle("Search for a favourite", for: .normal)
             }else {
                 topBarBackground.backgroundColor = .myGreen
                 favouriteTitle.textColor = .myDarkGreen
+                searchForFavButton.setTitle("Search for More", for: .normal)
             }
         }
     }
@@ -40,8 +42,8 @@ class FavouriteViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setUpNavigationBar()
-        setUpView()
         setUpData()
+        setUpView()
         setUpCollectionView()
     }
     
@@ -51,10 +53,17 @@ class FavouriteViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = .white
     }
     
+    @objc
+    func goToHomePage() {
+        mainCor.goToHomePage()
+    }
+    
     func setUpData() {
-//        favouriteMovies = moviesDataCopy.filter({$0.isFavourite})
-        favouriteMovies = moviesDataCopy
-        collectionView.reloadData()
+        favouriteMovies = moviesDataCopy.filter({$0.isFavourite})
+//        favouriteMovies = moviesDataCopy
+//        collectionView.reloadData()
+        searchForFavButton.addTarget(self, action: #selector(goToHomePage), for: .touchUpInside)
+        
     }
     
     lazy var topBarBackground: UILabel = {

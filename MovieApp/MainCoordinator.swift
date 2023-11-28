@@ -32,7 +32,7 @@ class MainCoordinator: Coordinator {
     func goToHomePage() {
         print("goToFirstPage")
         let vc = HomeViewController(coordinator: self)
-        navigationController.viewControllers = [vc]
+        navigationController.popToViewController(vc, animated: true)
     }
     
     func navigateBack() {
