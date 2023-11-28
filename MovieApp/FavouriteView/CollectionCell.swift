@@ -35,9 +35,23 @@ class CollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc func addMovieToFavourite() {
+        debugPrint("add movie to favourite")
+        let index = moviesDataCopy.firstIndex{ $0.title == data.title }
+        if let index = index {
+            if(moviesDataCopy[index].isFavourite){
+                starButton.setImage(UIImage(systemName: "star"), for: .normal)
+                moviesDataCopy[index].isFavourite = false
+            }else {
+                starButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+                moviesDataCopy[index].isFavourite = true
+            }
+        }
+    }
+    
     func setUpView() {
         self.contentView.isUserInteractionEnabled = true
-        backgroundColor = .blue
+        starButton.addTarget(self, action: #selector(addMovieToFavourite), for: .touchUpInside)
         addSubview(moviePosterImage)
         addSubview(starButton)
         addSubview(ratingText)
@@ -49,21 +63,21 @@ class CollectionCell: UICollectionViewCell {
         moviePosterImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
         moviePosterImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
         moviePosterImage.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
-        moviePosterImage.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        moviePosterImage.heightAnchor.constraint(equalToConstant: 140).isActive = true
         
         starButton.topAnchor.constraint(equalTo: moviePosterImage.bottomAnchor, constant: -30).isActive = true
         starButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        starButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        starButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        starButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        starButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         ratingText.topAnchor.constraint(equalTo: starButton.bottomAnchor, constant: 5).isActive = true
-        ratingText.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
-        ratingText.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 20).isActive = true
+        ratingText.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
+        ratingText.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
         ratingText.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         rateScore.topAnchor.constraint(equalTo: ratingText.bottomAnchor, constant: 5).isActive = true
         rateScore.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
-        rateScore.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 20).isActive = true
+        rateScore.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
         rateScore.heightAnchor.constraint(equalToConstant: 20).isActive = true
     }
     
@@ -73,7 +87,7 @@ class CollectionCell: UICollectionViewCell {
         imageView.layer.masksToBounds = true
         let image = UIImage(systemName: "photo.artframe")
         imageView.image = image
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.zPosition = 2
         imageView.tintColor = UIColor.myBlue
         imageView.layer.borderWidth = 3
@@ -99,10 +113,9 @@ class CollectionCell: UICollectionViewCell {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.layer.zPosition = 1
-        label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.regular)
+        label.layer.zPosition = 2
+        label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.regular)
         label.textColor = UIColor.black
-        label.backgroundColor = UIColor.myDarkGreen
         label.clipsToBounds = true
         label.sizeToFit()
         label.text = "My Rating"

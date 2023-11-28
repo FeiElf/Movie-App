@@ -22,7 +22,7 @@ extension FavouriteViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSizeMake(150, view.frame.height)
+        return CGSizeMake(100, 300)
     }
     
 }

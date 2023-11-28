@@ -60,10 +60,7 @@ class FavouriteViewController: UIViewController {
     
     func setUpData() {
         favouriteMovies = moviesDataCopy.filter({$0.isFavourite})
-//        favouriteMovies = moviesDataCopy
-//        collectionView.reloadData()
         searchForFavButton.addTarget(self, action: #selector(goToHomePage), for: .touchUpInside)
-        
     }
     
     lazy var topBarBackground: UILabel = {
@@ -157,6 +154,7 @@ class FavouriteViewController: UIViewController {
         collectionView.backgroundColor = .clear
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.layer.zPosition = 2
+        collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
 }

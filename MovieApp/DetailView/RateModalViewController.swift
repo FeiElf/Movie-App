@@ -84,7 +84,7 @@ final class RateModalViewController: UIViewController {
     func setUpTextFieldPublisher() {
         rateTextField.textPublisher.sink { value in
             debugPrint(value)
-            if let x = value.rangeOfCharacter(from: NSCharacterSet.decimalDigits) {
+            if value.rangeOfCharacter(from: NSCharacterSet.decimalDigits) != nil {
                 if value.count > 1 {
                     self.rateTextField.text = String(value.last ?? "0")
                 }

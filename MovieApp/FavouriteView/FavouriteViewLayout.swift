@@ -51,9 +51,9 @@ extension FavouriteViewController {
         }else {
             view.addSubview(collectionView)
             collectionView.topAnchor.constraint(equalTo: favouriteTitle.bottomAnchor, constant: 40).isActive = true
-            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
-            collectionView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+            collectionView.heightAnchor.constraint(equalToConstant: 300).isActive = true
         }
 
         view.addSubview(searchForFavButton)
