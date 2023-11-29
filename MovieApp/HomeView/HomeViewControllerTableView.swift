@@ -20,7 +20,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.mainCor.goToDetailPage(movieDataId: indexPath.row)
+        let info = moviesData[indexPath.row]
+        let index = moviesDataCopy.firstIndex(where: {$0.title == info.title})
+        self.mainCor.goToDetailPage(movieDataId: index!)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

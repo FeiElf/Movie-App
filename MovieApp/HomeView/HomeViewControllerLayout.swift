@@ -18,7 +18,7 @@ extension HomeViewController {
     func setUpView(){
         view.backgroundColor = UIColor.myGreen
         view.addSubview(SearchWhiteBackground)
-        SearchWhiteBackground.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+        SearchWhiteBackground.topAnchor.constraint(equalTo: view.topAnchor, constant: 90).isActive = true
         SearchWhiteBackground.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
         SearchWhiteBackground.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
         SearchWhiteBackground.heightAnchor.constraint(equalToConstant: 50).isActive = true
